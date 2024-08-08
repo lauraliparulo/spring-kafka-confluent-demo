@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.github.javafaker.Faker;
 
+import io.confluent.developer.avro.Hobbit;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 
@@ -19,7 +20,7 @@ import reactor.core.publisher.Flux;
 public class Producer {
   
   @Autowired
-  private KafkaTemplate<Integer, String> template;
+  private KafkaTemplate<Integer, Hobbit> template;
 
   Faker faker;
 
@@ -32,7 +33,7 @@ public class Producer {
     final Flux<String> quotes = Flux.fromStream(Stream.generate(() -> faker.hobbit().quote()));
 
     Flux.zip(interval, quotes)
-        .map(it -> template.send("hobbit", faker.random().nextInt(42), it.getT2())).blockLast();
+    .map(it -> template.send("hobbit-avro", faker.random().nextInt(42), new Hobbit(it.getT2()))).blockLast();
   }
 
 }

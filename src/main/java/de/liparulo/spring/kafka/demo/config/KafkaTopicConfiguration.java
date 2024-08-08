@@ -12,14 +12,8 @@ public class KafkaTopicConfiguration {
 	  NewTopic hobbit() {
 	    return TopicBuilder.name("hobbit").partitions(15).replicas(3).build();
 	  }
-	
+	 
 	  @Bean
-	  NewTopic hobbit2() {
-	    return TopicBuilder.name("hobbit2").partitions(15).replicas(3).build();
+	  NewTopic hobbit_avro() { return TopicBuilder.name("hobbit-avro").partitions(15).replicas(3).build();
 	  }
-	  
-	  @Bean
-	  NewTopic counts() {
-	    return TopicBuilder.name("streams-wordcount-output").partitions(6).replicas(3).build();
-	  }	
 }
