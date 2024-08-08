@@ -31,34 +31,16 @@ public class KafkaConsumerConfig {
 	  @Value("${spring.kafka.properties.security.protocol}") 
 	    private String securityProtocol;
 	  
-	  @Value("${spring.kafka.producer.client-id}") 
-	    private String groupId;
+//	  @Value("${spring.kafka.producer.client-id}") 
+//	    private String groupId;
 
-//    @Bean
-//    public ConsumerFactory<String, String> consumerFactory() {
-//        Map<String, Object> props = new HashMap<>();
-//        props.put(
-//          ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, 
-//          bootstrapAddress);
-//        props.put(
-//          ConsumerConfig.GROUP_ID_CONFIG, 
-//          groupId);
-//        props.put(
-//          ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, 
-//          StringDeserializer.class);
-//        props.put(
-//          ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, 
-//          StringDeserializer.class);
-//        return new DefaultKafkaConsumerFactory<>(props);
-//    }
-    
 	  @Bean
 	  public ConsumerFactory<Integer, String> consumerFactory() {
 	      Map<String, Object> configProps = new HashMap<>();
 	      configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
 	      configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, 	IntegerDeserializer.class);
 	      configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-	      configProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+//	      configProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
 	      configProps.put("sasl.mechanism", saslMechanism);
 	      configProps.put("sasl.jaas.config", salsJaasConfig);
 	      configProps.put("security.protocol", securityProtocol);

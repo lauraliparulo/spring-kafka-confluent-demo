@@ -8,6 +8,10 @@ import org.springframework.kafka.config.TopicBuilder;
 @Configuration
 public class KafkaTopicConfiguration {
 
+	  @Bean
+	  NewTopic hobbit() {
+	    return TopicBuilder.name("hobbit").partitions(15).replicas(3).build();
+	  }
 	
 	  @Bean
 	  NewTopic hobbit2() {
